@@ -17,7 +17,7 @@
 
     onMount(async () => {
         try {
-            const res = await fetch("http://localhost:3000/api/user/delivery", {
+            const res = await fetch("/api/user/delivery", {
                 method: "GET",
                 credentials: "include",
             });
@@ -32,7 +32,7 @@
         e.preventDefault();
 
         try {
-            const res = await fetch("http://localhost:3000/api/delivery", {
+            const res = await fetch("/api/delivery", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

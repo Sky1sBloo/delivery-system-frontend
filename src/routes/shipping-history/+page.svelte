@@ -3,32 +3,58 @@
     import Navbar from "$lib/navbar.svelte";
     import Footer from "$lib/footer.svelte";
 
-    import {cities} from "$lib/cities.js"
+    import { cities } from "$lib/cities.js";
+    import { goto } from "$app/navigation";
 
     let shipments = [];
 
     onMount(async () => {
         try {
-            const res = await fetch("/api/delivery/all");
-            if (res.ok) {
-                shipments = await res.json();
-            } else {
-                console.error("Failed to fetch shipments");
-            }
+            await loadShipments();
         } catch (error) {
             console.error(error);
         }
     });
+
+    const loadShipments = async () => {
+            const res = await fetch("/api/delivery/all");
+            if (res.ok) {
+                shipments = await res.json();
+            } else {
+                throw new Error("Failed to fetch shipments");
+            }
+    }
+
+    const editShipment = (shipment) => {
+        goto(`/shipment/edit/${shipment.id}`);
+    };
+
+    const deleteShipment = async (shipment) => {
+        try {
+            const res = await fetch(`/api/delivery/${shipment.id}`, {
+                method: "DELETE",
+                credentials: "include",
+            });
+            if (!res.ok) {
+                throw new Error("Failed to delete shipment");
+            }
+
+            await loadShipments();
+        } catch (error) {
+            console.error(error);
+        }
+    };
 </script>
 
 <div class="shipping-history">
-    <Navbar currentPath="/shipping-history"/>
+    <Navbar currentPath="/shipping-history" />
     <div class="content-container">
         <h2>Shipping History</h2>
         <section class="scrollable-table">
             <table class="history-table">
                 <thead>
                     <tr>
+                        <th>Edit</th>
                         <th>Product Name</th>
                         <th>Status</th>
                         <th>Sender</th>
@@ -43,6 +69,15 @@
                 <tbody>
                     {#each shipments as shipment}
                         <tr>
+                            <td>
+                                <button on:click={() => editShipment(shipment)}
+                                    >Edit</button
+                                >
+                                <button
+                                    on:click={() => deleteShipment(shipment)}
+                                    >Delete</button
+                                >
+                            </td>
                             <td>{shipment.product_name}</td>
                             <td>{shipment.status}</td>
                             <td>{shipment.sender}</td>

@@ -1,7 +1,12 @@
 <script>
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
+    import { page } from "$app/stores";
     import City from "$lib/city.svelte";
+    import { cities } from "$lib/cities";
+
+    export let data;
+    const deliveryInfo = data.deliveryInfo;
 
     let productName;
     let deliverySelected;
@@ -14,26 +19,44 @@
     let packageWeight;
 
     let delivery = [];
+    $: id = $page.params.id;
 
-    onMount(async () => {
+    $: if (data?.deliveryInfo) {
+        productName = deliveryInfo.product_name;
+        deliverySelected = deliveryInfo.assigned_delivery;
+        senderName = deliveryInfo.sender;
+        source = deliveryInfo.source;
+        receiverName = deliveryInfo.recipient;
+        destination = deliveryInfo.destination;
+        dateShipped = deliveryInfo.date_shipped;
+        deadline = deliveryInfo.deadline;
+        packageWeight = deliveryInfo.weight;
+        console.log(deliveryInfo);
+    }
+
+    onMount(() => {
         try {
-            const res = await fetch("http://localhost:3000/api/user/delivery", {
-                method: "GET",
-                credentials: "include",
-            });
-            const data = await res.json();
-            delivery = data;
+            loadDeliveryPerson();
         } catch (error) {
             console.error(error.message);
         }
     });
 
+    const loadDeliveryPerson = async () => {
+        const res = await fetch("/api/user/delivery", {
+            method: "GET",
+            credentials: "include",
+        });
+        const data = await res.json();
+        delivery = data;
+    };
+
     const submitNewData = async (e) => {
         e.preventDefault();
 
         try {
-            const res = await fetch("http://localhost:3000/api/delivery", {
-                method: "POST",
+            const res = await fetch(`/api/delivery/${id}`, {
+                method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     product_name: productName,
@@ -48,10 +71,11 @@
                 }),
                 credentials: "include",
             });
+            console.log(res);
             if (!res.ok) {
                 throw new Error("Submit failed");
             }
-            goto("/dashboard");
+            goto("/shipping-history");
         } catch (error) {
             console.error(error.message);
         }
@@ -71,7 +95,7 @@
 
     <main class="shipment-container">
         <div class="shipment-card">
-            <button on:click={goto("/")}>
+            <button on:click={goto("/dashboard")}>
                 <img
                     src="/arrow-left-circle.png"
                     alt="Back Button"
