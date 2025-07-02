@@ -1,5 +1,6 @@
 <script>
     import Navbar from '$lib/navbar.svelte'
+    import Footer from '$lib/footer.svelte'
 </script>
 <!-- Header -->
 <Navbar currentPath="/dashboard"/>
@@ -30,8 +31,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">Precision Routing, Perfect Timing.</div>
+    <Footer />
 </div>
 
 <style>
@@ -120,8 +120,7 @@
         margin-left: 150px;
     }
 
-    .card img,
-    .card svg {
+    .card img {
         width: 120px;
         height: 120px;
         margin-bottom: 1rem;
@@ -147,17 +146,5 @@
         margin-top: 5px;
         object-fit: cover;
         border: 5px solid #d9d9d9;
-    }
-
-    /*footer*/
-    .footer {
-        background-color: #00a6a6;
-        text-align: left;
-        padding: 1rem 2rem;
-        font-family: "Great Vibes", cursive;
-        font-weight: 600;
-        font-size: 2.5rem;
-        border-top: 4px dashed #000000;
-        color: black;
     }
 </style>

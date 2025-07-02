@@ -1,15 +1,23 @@
 <script>
-export let currentPath = "/";
+    export let currentPath = "/";
 </script>
 
 <header class="navbar">
     <div class="logo">deliver<span class="highlight">ithm</span></div>
     <nav class="nav-links">
-		<a href="/dashboard" class:active={currentPath === "/dashboard"}>Dashboard</a>
-		<a href="/" class:active={currentPath === "/"}>Create Shipment</a>
-		<a href="/shipping-history" class:active={currentPath === "/shipping-history"}>Shipping History</a>
-		<a href="/contactus" class:active={currentPath === "/contactus"}>Contact Us</a>
-       </nav>
+        <a href="/dashboard" class:active={currentPath === "/dashboard"}
+            >Dashboard</a
+        >
+        <a href="/" class:active={currentPath === "/"}>Create Shipment</a>
+        <a
+            href="/shipping-history"
+            class:active={currentPath === "/shipping-history"}
+            >Shipping History</a
+        >
+        <a href="/contactus" class:active={currentPath === "/contactus"}
+            >Contact Us</a
+        >
+    </nav>
 </header>
 
 <style>
