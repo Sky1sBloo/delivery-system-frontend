@@ -1,6 +1,23 @@
 <script>
     import Navbar from "$lib/navbar.svelte";
     import Footer from "$lib/footer.svelte";
+    import { onMount } from "svelte";
+
+    onMount(async () => {
+        try {
+            const account = await getUserInfo((res) => {
+                if (res.status === 401) {
+                    goto("/login");
+                }
+            });
+
+            if (account.accountType !== "management") {
+                goto("/");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    });
 </script>
 
 <!-- Header -->

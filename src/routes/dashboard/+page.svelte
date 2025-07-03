@@ -1,19 +1,16 @@
 <script>
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
+    import { getUserInfo } from "$lib/user.js";
 
     onMount(async () => {
         try {
-            const res = await fetch("/api/user/", {
-                method: "GET",
-                credentials: "include",
+            const account = await getUserInfo((res) => {
+                if (res.status === 401) {
+                    goto('/login');
+                }
             });
-
-            if (res.status === 401) {
-                goto("/login");
-            }
-            const data = await res.json();
-            if (data.accountType === "management") {
+            if (account.accountType === "management") {
                 goto("/management/dashboard");
             }
         } catch (err) {

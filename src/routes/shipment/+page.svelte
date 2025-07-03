@@ -44,7 +44,7 @@
                     source: source,
                     date_shipped: dateShipped,
                     deadline: deadline,
-                    weight: packageWeight 
+                    weight: packageWeight,
                 }),
                 credentials: "include",
             });
@@ -156,7 +156,7 @@
                 </div>
 
                 <div class="form-actions">
-                    <input type="submit" class="proceed-btn" value="Proceed"/>
+                    <input type="submit" class="proceed-btn" value="Proceed" />
                 </div>
             </form>
         </div>
