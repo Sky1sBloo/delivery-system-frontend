@@ -17,6 +17,7 @@
     let dateShipped;
     let deadline;
     let packageWeight;
+    let volume;
 
     let delivery = [];
     $: id = $page.params.id;
@@ -31,7 +32,7 @@
         dateShipped = deliveryInfo.date_shipped;
         deadline = deliveryInfo.deadline;
         packageWeight = deliveryInfo.weight;
-        console.log(deliveryInfo);
+        volume = deliveryInfo.volume;
     }
 
     onMount(() => {
@@ -68,6 +69,7 @@
                     date_shipped: dateShipped,
                     deadline: deadline,
                     weight: packageWeight,
+                    volume: volume
                 }),
                 credentials: "include",
             });
@@ -169,7 +171,15 @@
                 </div>
 
                 <div class="form-row weight-dimension-row">
-                    <div class="form-group package-weight-group">
+                    <div class="form-group ">
+                        <label for="number">Volume</label>
+                        <input 
+                            type="number" 
+                            placeholder="In cubic meters"
+                            bind:value={volume}
+                        />
+                    </div>
+                    <div class="form-group">
                         <label for="number">Package Weight</label>
                         <input
                             type="number"

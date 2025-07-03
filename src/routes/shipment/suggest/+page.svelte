@@ -8,6 +8,7 @@
     let source;
     let destination;
     let capacity;
+    let volume;
     let shipments = [];
 
     let delivery = [];
@@ -26,12 +27,14 @@
 
     const suggestItems = async (e) => {
         e.preventDefault();
+        shipments = [];
 
         try {
             const params = new URLSearchParams({
                 source: source,
                 destination: destination,
                 capacity: capacity,
+                volume: volume
             });
             if (source === "" || destination === "") {
                 return;
@@ -99,6 +102,10 @@
                         <label for="number">Capacity</label>
                         <input type="number" bind:value={capacity} />
                     </div>
+                    <div class="form-group">
+                        <label for="number">Volume</label>
+                        <input type="number" bind:value={volume} />
+                    </div>
                 </div>
                 <div class="form-actions">
                     <input type="submit" class="proceed-btn" value="Proceed" />
@@ -119,6 +126,7 @@
                             <th>Date Shipped</th>
                             <th>Deadline</th>
                             <th>Weight</th>
+                            <th>Volume</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -147,6 +155,7 @@
                                 <td>{shipment.date_shipped}</td>
                                 <td>{shipment.deadline}</td>
                                 <td>{shipment.weight}</td>
+                                <td>{shipment.volume}</td>
                             </tr>
                         {/each}
                     </tbody>
