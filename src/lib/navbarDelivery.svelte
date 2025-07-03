@@ -14,9 +14,6 @@
             class:active={currentPath === "/route"}
             >Suggest Route</a
         >
-        <a href="/contactus" class:active={currentPath === "/contactus"}
-            >Contact Us</a
-        >
         <a href="/logout" class:active={currentPath === "/logout"}
             >Logout</a
         >

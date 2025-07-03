@@ -14,12 +14,13 @@
             class:active={currentPath === "/shipping-history"}
             >Shipping History</a
         >
+        <a href="/shipment/suggest" class:active={currentPath === "/suggest"}
+            >Suggest Items</a
+        >
         <a href="/contactus" class:active={currentPath === "/contactus"}
             >Contact Us</a
         >
-        <a href="/logout" class:active={currentPath === "/logout"}
-            >Logout</a
-        >
+        <a href="/logout" class:active={currentPath === "/logout"}>Logout</a>
     </nav>
 </header>
 

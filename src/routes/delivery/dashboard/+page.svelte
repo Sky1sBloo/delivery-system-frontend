@@ -35,10 +35,6 @@
                     <img src="/history.png" alt="Shipment route" />
                     <a href="/shipment/route" class="card-link">Get Route</a>
                 </div>
-                <div class="card">
-                    <img src="/contactUs.png" alt="Contact Us" />
-                    <a href="ContactUs.html" class="card-link">Contact Us</a>
-                </div>
             </div>
         </div>
 

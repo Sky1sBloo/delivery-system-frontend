@@ -41,6 +41,10 @@
                     <img src="/contactUs.png" alt="Contact Us" />
                     <a href="ContactUs.html" class="card-link">Contact Us</a>
                 </div>
+                <div class="card">
+                    <img src="/contactUs.png" alt="Contact Us" />
+                    <a href="/shipment/suggest" class="card-link">Suggest Items</a>
+                </div>
             </div>
         </div>
 
@@ -119,11 +123,6 @@
         color: #002f2f;
         text-decoration: underline;
         cursor: pointer;
-    }
-
-    .grid .card:nth-child(3) {
-        grid-column: span 2;
-        justify-self: center;
     }
 
     .grid-wrapper {
