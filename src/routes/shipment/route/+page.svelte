@@ -6,6 +6,7 @@
 
     let source;
     let destination;
+    let cities = [];
 
     const getRoute = async (e) => {
         e.preventDefault();
@@ -13,7 +14,7 @@
         try {
             const params = new URLSearchParams({
                 source: source,
-                destination: destination
+                destination: destination,
             });
             const res = await fetch(`/api/delivery/route?${params.toString()}`);
 
@@ -21,7 +22,8 @@
                 throw new Error("Failed to fetch route");
             }
             const route = await res.json();
-            console.log(route);
+
+            cities = route.route;
             const iframe = document.getElementById("godot-frame");
             if (
                 iframe &&
@@ -67,6 +69,29 @@
                 </div>
             </form>
             <iframe title="map" id="godot-frame" src="/map/map.html"></iframe>
+
+            <section class="scrollable-table">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Start</th>
+                            <th>Destination</th>
+                            <th>Road</th>
+                            <th>Distance (km)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {#each cities as city}
+                            <tr>
+                                <td>{city.source}</td>
+                                <td>{city.destination}</td>
+                                <td>{city.roadName}</td>
+                                <td>{city.distance}</td>
+                            </tr>
+                        {/each}
+                    </tbody>
+                </table>
+            </section>
         </div>
     </main>
 
@@ -90,6 +115,33 @@
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+    }
+
+    /* === TABLE === */
+    .scrollable-table {
+        max-height: 400px;
+        overflow-y: auto;
+        border: 2px solid #00a6a6;
+    }
+    .history-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        color: black;
+    }
+
+    .history-table th,
+    .history-table td {
+        border: 2px solid #00a6a6;
+        padding: 12px;
+        text-align: left;
+    }
+
+    .history-table thead th {
+        position: sticky;
+        top: 0;
+        background-color: #e1ffff;
+        z-index: 1;
     }
 
     .shipment {
