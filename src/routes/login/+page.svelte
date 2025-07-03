@@ -7,7 +7,7 @@
         e.preventDefault(); // stop page reload
 
         try {
-            const res = await fetch("http://localhost:3000/api/user/login", {
+            const res = await fetch("/api/user/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
@@ -17,7 +17,6 @@
             if (!res.ok) throw new Error("Login failed");
 
             const data = await res.json();
-            console.log(data);
             goto('/');
         } catch (err) {
             console.error("Login error:", err);
@@ -51,9 +50,7 @@
             />
             <input class="login-btn" type="submit" value="Login" />
             <div class="links">
-                <p>Forgot Password</p>
-                <p>Create Deliverithm Account</p>
-                <p>Deliverithm Personnel? Click Here</p>
+                <a href="/register">Create Deliverithm Account</a>
             </div>
         </form>
     </div>
@@ -182,12 +179,12 @@
         font-size: 0.9rem;
     }
 
-    .links p {
+    .links a {
         color: #004d4d;
         text-decoration: none;
     }
 
-    .links p:hover {
+    .links a:hover {
         text-decoration: underline;
     }
 </style>

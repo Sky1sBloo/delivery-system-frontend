@@ -2,6 +2,7 @@
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
     import City from "$lib/city.svelte";
+    import Navbar from "$lib/navbar.svelte";
 
     let productName;
     let deliverySelected;
@@ -12,12 +13,13 @@
     let dateShipped;
     let deadline;
     let packageWeight;
+    let volume;
 
     let delivery = [];
 
     onMount(async () => {
         try {
-            const res = await fetch("http://localhost:3000/api/user/delivery", {
+            const res = await fetch("/api/user/delivery", {
                 method: "GET",
                 credentials: "include",
             });
@@ -32,7 +34,7 @@
         e.preventDefault();
 
         try {
-            const res = await fetch("http://localhost:3000/api/delivery", {
+            const res = await fetch("/api/delivery", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -44,7 +46,8 @@
                     source: source,
                     date_shipped: dateShipped,
                     deadline: deadline,
-                    weight: packageWeight 
+                    weight: packageWeight,
+                    volume: volume
                 }),
                 credentials: "include",
             });
@@ -59,15 +62,7 @@
 </script>
 
 <div class="shipment">
-    <header class="navbar">
-        <div class="logo">deliver<span class="highlight">ithm</span></div>
-        <nav class="nav-links">
-            <a href="/dashboard">Dashboard</a>
-            <a href="/" class="active">Create Shipment</a>
-            <a href="/">Shipping History</a>
-            <a href="/">Contact Us</a>
-        </nav>
-    </header>
+    <Navbar currentPath="/shipment" />
 
     <main class="shipment-container">
         <div class="shipment-card">
@@ -144,8 +139,18 @@
                     </div>
                 </div>
 
+                <div class="form-row"></div>
+
                 <div class="form-row weight-dimension-row">
-                    <div class="form-group package-weight-group">
+                    <div class="form-group ">
+                        <label for="number">Volume</label>
+                        <input 
+                            type="number" 
+                            placeholder="In cubic meters"
+                            bind:value={volume}
+                        />
+                    </div>
+                    <div class="form-group ">
                         <label for="number">Package Weight</label>
                         <input
                             type="number"
@@ -156,7 +161,7 @@
                 </div>
 
                 <div class="form-actions">
-                    <input type="submit" class="proceed-btn" value="Proceed"/>
+                    <input type="submit" class="proceed-btn" value="Proceed" />
                 </div>
             </form>
         </div>
