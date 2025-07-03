@@ -13,17 +13,25 @@
         try {
             const params = new URLSearchParams({
                 source: source,
-                destination: destination,
+                destination: destination
             });
-            const res = await fetch(`/api/delivery/route?${params.toString()}`, {
-                method: "GET",
-                headers: { "Content-Type": "application/json" }
-            });
+            const res = await fetch(`/api/delivery/route?${params.toString()}`);
+
             if (!res.ok) {
                 throw new Error("Failed to fetch route");
             }
             const route = await res.json();
             console.log(route);
+            const iframe = document.getElementById("godot-frame");
+            if (
+                iframe &&
+                iframe.contentWindow &&
+                iframe.contentWindow.godotBridge?.showRoute
+            ) {
+                iframe.contentWindow.godotBridge.showRoute(route);
+            } else {
+                console.warn("Godot bridge not ready");
+            }
         } catch (error) {
             console.error(error.message);
         }
@@ -58,6 +66,7 @@
                     <input type="submit" class="proceed-btn" value="Proceed" />
                 </div>
             </form>
+            <iframe title="map" id="godot-frame" src="/map/map.html"></iframe>
         </div>
     </main>
 
@@ -97,39 +106,9 @@
         background-image: url("mainbg.jpeg");
     }
 
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #0099a0;
-        padding: 15px 30px;
-    }
-
-    .logo {
-        color: #004c4c;
-        font-weight: bold;
-        font-size: 3rem;
-    }
-
-    .logo .highlight {
-        color: #ffffff;
-        font-weight: 700;
-    }
-
-    .nav-links a {
-        color: #ffffff;
-        text-decoration: none;
-        margin-left: 20px;
-        font-weight: bold;
-        padding: 8px 15px;
-        border-radius: 25px;
-        font-size: 1.5rem;
-        transition: background-color 0.3s;
-    }
-
-    .nav-links a.active,
-    .nav-links a:hover {
-        background-color: #003d3d;
+    #godot-frame {
+        width: 100%;
+        height: 520px;
     }
 
     .shipment-container {

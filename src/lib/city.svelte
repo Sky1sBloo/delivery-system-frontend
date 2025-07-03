@@ -6,7 +6,9 @@
 <select id="city-select" bind:value={selectedCity}>
     <option value="" disabled selected>Select a city</option>
     {#each cities as city, index}
-        <option value={index}>{city}</option>
+        {#if city !== null}
+            <option value={index}>{city}</option>
+        {/if}
     {/each}
 </select>
 
