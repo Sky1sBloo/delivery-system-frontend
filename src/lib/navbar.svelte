@@ -17,6 +17,9 @@
         <a href="/contactus" class:active={currentPath === "/contactus"}
             >Contact Us</a
         >
+        <a href="/logout" class:active={currentPath === "/contactus"}
+            >Logout</a
+        >
     </nav>
 </header>
 
