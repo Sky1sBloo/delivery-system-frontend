@@ -32,8 +32,8 @@
                     <a href="/delivery/assigned" class="card-link">Assigned Shipment</a>
                 </div>
                 <div class="card">
-                    <img src="/history.png" alt="Shipping History" />
-                    <a href="/shipping-history" class="card-link">Get Route</a>
+                    <img src="/history.png" alt="Shipment route" />
+                    <a href="/shipment/route" class="card-link">Get Route</a>
                 </div>
                 <div class="card">
                     <img src="/contactUs.png" alt="Contact Us" />

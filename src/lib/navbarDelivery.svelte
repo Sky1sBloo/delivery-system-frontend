@@ -10,8 +10,8 @@
         >
         <a href="/delivery/assigned" class:active={currentPath === "/assigned"}>Assigned Shipment</a>
         <a
-            href="/shipping-history"
-            class:active={currentPath === "/shipping-history"}
+            href="/shipment/route"
+            class:active={currentPath === "/route"}
             >Suggest Route</a
         >
         <a href="/contactus" class:active={currentPath === "/contactus"}
