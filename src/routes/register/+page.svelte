@@ -2,23 +2,24 @@
     import { goto } from "$app/navigation";
     let username = "";
     let password = "";
+    let accountType = ""; // management/delivery
 
     const login = async (e) => {
         e.preventDefault(); // stop page reload
 
         try {
-            const res = await fetch("/api/user/login", {
+            const res = await fetch("/api/user/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password }),
-                credentials: "include"
+                credentials: "include",
             });
 
             if (!res.ok) throw new Error("Login failed");
 
             const data = await res.json();
             console.log(data);
-            goto('/');
+            goto("/");
         } catch (err) {
             console.error("Login error:", err);
         }
@@ -49,9 +50,13 @@
                 placeholder="Password"
                 class="input-field"
             />
-            <input class="login-btn" type="submit" value="Login" />
+            <select bind:value={accountType} class="input-field">
+                <option value="management">Management</option>
+                <option value="delivery">Delivery</option>
+            </select>
+            <input class="login-btn" type="submit" value="Register " />
             <div class="links">
-                <a href="/register">Create Deliverithm Account</a>
+                <a href="/login">Existing Account?</a>
             </div>
         </form>
     </div>
@@ -121,7 +126,7 @@
         padding: 2.5rem 2rem;
         border-radius: 40px;
         width: 50%;
-        height: 60%;
+        height: 65%;
         max-width: 400px;
         min-height: 420px;
         text-align: center;
