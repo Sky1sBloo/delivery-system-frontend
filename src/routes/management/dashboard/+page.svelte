@@ -2,6 +2,7 @@
     import Navbar from "$lib/navbar.svelte";
     import Footer from "$lib/footer.svelte";
     import { onMount } from "svelte";
+    import { getUserInfo } from "$lib/user.js";
 
     onMount(async () => {
         try {
@@ -43,7 +44,9 @@
                 </div>
                 <div class="card">
                     <img src="/contactUs.png" alt="Contact Us" />
-                    <a href="/shipment/suggest" class="card-link">Suggest Items</a>
+                    <a href="/shipment/suggest" class="card-link"
+                        >Suggest Items</a
+                    >
                 </div>
             </div>
         </div>

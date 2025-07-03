@@ -17,7 +17,6 @@
             if (!res.ok) throw new Error("Login failed");
 
             const data = await res.json();
-            console.log(data);
             goto('/');
         } catch (err) {
             console.error("Login error:", err);

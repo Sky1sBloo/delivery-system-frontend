@@ -11,17 +11,16 @@
             const res = await fetch("/api/user/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password }),
+                body: JSON.stringify({ username, password, accountType }),
                 credentials: "include",
             });
 
-            if (!res.ok) throw new Error("Login failed");
+            if (!res.ok) throw new Error("Registration failed");
 
             const data = await res.json();
-            console.log(data);
             goto("/");
         } catch (err) {
-            console.error("Login error:", err);
+            console.error("Registration error error:", err);
         }
     };
 </script>

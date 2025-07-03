@@ -62,7 +62,7 @@
     const assignEmployee = async (e) => {
         const deliverySelected = e.target.value;
 
-        const res = await fetch(`/api/delivery/${id}`, {
+        const res = await fetch(`/api/delivery/${e.target.dataset.id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -128,7 +128,7 @@
                                 <td>{shipment.id}</td>
                                 <td>{shipment.product_name}</td>
                                 <td>
-                                    <select on:change={assignEmployee}>
+                                    <select on:change={assignEmployee} data-id={shipment.id}> 
                                         {#each delivery as employee}
                                             <option value={employee.username}
                                                 >{employee.username}</option
