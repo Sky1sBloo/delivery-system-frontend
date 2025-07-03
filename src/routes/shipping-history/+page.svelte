@@ -56,6 +56,7 @@
                     <tr>
                         <th>Edit</th>
                         <th>Product Name</th>
+                        <th>Assigned</th>
                         <th>Status</th>
                         <th>Sender</th>
                         <th>Recipient</th>
@@ -79,6 +80,7 @@
                                 >
                             </td>
                             <td>{shipment.product_name}</td>
+                            <td>{shipment.assigned_delivery}</td>
                             <td>{shipment.status}</td>
                             <td>{shipment.sender}</td>
                             <td>{shipment.recipient}</td>
