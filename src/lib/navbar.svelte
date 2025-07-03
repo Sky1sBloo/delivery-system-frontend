@@ -8,7 +8,7 @@
         <a href="/dashboard" class:active={currentPath === "/dashboard"}
             >Dashboard</a
         >
-        <a href="/" class:active={currentPath === "/"}>Create Shipment</a>
+        <a href="/shipment" class:active={currentPath === "/shipment"}>Create Shipment</a>
         <a
             href="/shipping-history"
             class:active={currentPath === "/shipping-history"}

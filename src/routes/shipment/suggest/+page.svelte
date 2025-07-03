@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import { cities } from "$lib/cities.js";
     import City from "$lib/city.svelte";
-    import Navbar from "$lib/navbarDelivery.svelte";
+    import Navbar from "$lib/navbar.svelte";
 
     let source;
     let destination;
@@ -36,7 +36,7 @@
             if (source === "" || destination === "") {
                 return;
             }
-            let res = await fetch(`/api/delivery/items?${params.toString()}`);
+            const res = await fetch(`/api/delivery/items?${params.toString()}`);
             if (!res.ok) {
                 throw new Error("Failed to fetch route");
             }
@@ -46,13 +46,12 @@
             }
 
             for (const id of ids) {
-                res = await fetch(`/api/delivery/${id}`);
+                const deliveryRes = await fetch(`/api/delivery/${id}`);
                 if (!res.ok) {
                     throw new Error("Failed to fetch route");
                 }
-                const shipment = await res.json();
+                const shipment = await deliveryRes.json();
                 shipments = [...shipments, shipment];
-                console.log(shipments);
             }
         } catch (error) {
             console.error(error.message);
@@ -128,7 +127,11 @@
                                 <td>{shipment.id}</td>
                                 <td>{shipment.product_name}</td>
                                 <td>
-                                    <select on:change={assignEmployee} data-id={shipment.id}> 
+                                    <select
+                                        on:change={assignEmployee}
+                                        data-id={shipment.id}
+                                        value={shipment.assigned_delivery}
+                                    >
                                         {#each delivery as employee}
                                             <option value={employee.username}
                                                 >{employee.username}</option

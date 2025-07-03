@@ -2,6 +2,7 @@
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
     import City from "$lib/city.svelte";
+    import Navbar from "$lib/navbar.svelte";
 
     let productName;
     let deliverySelected;
@@ -59,15 +60,7 @@
 </script>
 
 <div class="shipment">
-    <header class="navbar">
-        <div class="logo">deliver<span class="highlight">ithm</span></div>
-        <nav class="nav-links">
-            <a href="/dashboard">Dashboard</a>
-            <a href="/" class="active">Create Shipment</a>
-            <a href="/">Shipping History</a>
-            <a href="/">Contact Us</a>
-        </nav>
-    </header>
+    <Navbar currentPath="/shipment"/>
 
     <main class="shipment-container">
         <div class="shipment-card">
