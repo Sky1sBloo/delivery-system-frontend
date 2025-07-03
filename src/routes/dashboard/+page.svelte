@@ -7,11 +7,13 @@
         try {
             const account = await getUserInfo((res) => {
                 if (res.status === 401) {
-                    goto('/login');
+                    goto("/login");
                 }
             });
             if (account.accountType === "management") {
                 goto("/management/dashboard");
+            } else {
+                goto("/delivery/dashboard");
             }
         } catch (err) {
             console.error("Error checking user auth:", err);
