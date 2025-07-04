@@ -64,7 +64,8 @@
                         <th>Destination</th>
                         <th>Date Shipped</th>
                         <th>Deadline</th>
-                        <th>Weight</th>
+                        <th>Weight (kg)</th>
+                        <th>Volume (m3)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,6 +90,7 @@
                             <td>{shipment.date_shipped}</td>
                             <td>{shipment.deadline}</td>
                             <td>{shipment.weight}</td>
+                            <td>{shipment.volume}</td>
                         </tr>
                     {/each}
                 </tbody>
@@ -110,7 +112,7 @@
     .shipping-history {
         height: 100%;
         font-family: Arial, sans-serif;
-        background-image: url("/img/bg.png");
+        background-image: url("/mainbg.jpeg");
         background-size: cover;
         background-repeat: repeat;
         display: flex;

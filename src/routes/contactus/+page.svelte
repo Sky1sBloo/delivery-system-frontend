@@ -61,7 +61,7 @@
     /*background */
     .page {
         font-family: "Roboto", sans-serif;
-        background-image: url("mainbg.jpeg");
+        background-image: url("/mainbg.jpeg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;

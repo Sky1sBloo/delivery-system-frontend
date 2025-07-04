@@ -99,11 +99,11 @@
                         <City bind:selectedCity={destination} />
                     </div>
                     <div class="form-group">
-                        <label for="number">Capacity</label>
+                        <label for="number">Capacity (kg)</label>
                         <input type="number" bind:value={capacity} />
                     </div>
                     <div class="form-group">
-                        <label for="number">Volume</label>
+                        <label for="number">Volume (m3)</label>
                         <input type="number" bind:value={volume} />
                     </div>
                 </div>
@@ -125,8 +125,8 @@
                             <th>Destination</th>
                             <th>Date Shipped</th>
                             <th>Deadline</th>
-                            <th>Weight</th>
-                            <th>Volume</th>
+                            <th>Weight (kg)</th>
+                            <th>Volume (m3)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -197,7 +197,7 @@
         font-family: "Roboto", sans-serif;
         display: flex;
         flex-direction: column;
-        background-image: url("mainbg.jpeg");
+        background-image: url("/mainbg.jpeg");
     }
 
     .shipment-container {
