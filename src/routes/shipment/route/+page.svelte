@@ -221,29 +221,13 @@
         font-size: 14px;
     }
 
-    .shipment-form input,
-    .shipment-form select {
+    .shipment-form input {
         padding: 12px;
         border: none;
         border-radius: 25px;
         outline: none;
         font-size: 14px;
         width: 100%;
-    }
-
-    .package-weight-group input {
-        width: calc((100% - 20px) / 3);
-    }
-
-    .weight-dimension-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .weight-dimension-row > .form-group {
-        flex: 1;
-        min-width: calc((100% - 20px) / 3);
     }
 
     .form-actions {
